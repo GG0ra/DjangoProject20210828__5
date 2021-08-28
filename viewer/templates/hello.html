@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>moja pierwsza strona w Django</title>
+</head>
+<body>
+    <h1>Witaj w HollyMovies!</h1>
+    {% for adjective in adjectives %}
+        {% if adjective == 'super' %}
+            <p style="font-size: large">Adjective: {{ adjective }}</p>
+        {% else %}
+            <p>Adjective: {{ adjective }}</p>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
