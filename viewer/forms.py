@@ -1,20 +1,24 @@
 from django.core.exceptions import ValidationError
 from django.forms import (
-    Form, CharField, ModelChoiceField, IntegerField, DateField, Textarea
+    Form, CharField, ModelChoiceField, IntegerField, DateField, Textarea, ModelForm
 )
-from viewer.models import Genre
+from viewer.models import Genre, Movie
 
 from viewer.validators import PastMonthField, capitalized_validator
 
 import re
 
 
-class MovieForm(Form):
-    title = CharField(max_length=128)  # input - max: 128
-    genre = ModelChoiceField(queryset=Genre.objects)  # select -> options (pojedynczy wiersz z Genre)
-    rating = IntegerField(min_value=1, max_value=10)  # input type: number, min=1, max=10
-    released = PastMonthField()  # input type: date
-    description = CharField(widget=Textarea, required=False)  # nie będzie wymagane
+
+class MovieForm(ModelForm):
+    class Meta:  # subklasa opisująca dane z których będzie tworzony form
+        model = Movie  # model na podstawie tworzymy formularz
+        fields = '__all__'  # wykorzystujemy wszystkie pola z modelu
+
+    # pola z własnymi walidatorami dodajemy oddzielnie, poza META
+    title = CharField(validators=[capitalized_validator])
+    rating = IntegerField(min_value=1, max_value=10)
+    released = PastMonthField()
 
     def clean_description(self):
         #pobranie wartości pola description
