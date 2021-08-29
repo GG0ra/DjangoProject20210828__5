@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Witaj w HollyMovies!</h1>
+    {% for movie in movies %}
+        <li>
+            {{ movie.title }} ({{ movie.released.year }}) - {{ movie.genre.name }}
+        </li>
+    {% endfor %}
+{% endblock %}
