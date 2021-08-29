@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Witaj w HollyMovies!</h1>
-    {% for movie in movies %}
+    {% for movie in object_list %}
         <li>
             {{ movie.title }} ({{ movie.released.year }}) - {{ movie.genre.name }}
         </li>
