@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from viewer.views import MoviesView
+from viewer.views import MoviesView, MovieCreateView
 from viewer.models import Genre, Movie
 
 admin.site.register(Genre)
@@ -24,6 +24,8 @@ admin.site.register(Movie)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', MoviesView.as_view(), name='index')
+    path('', MoviesView.as_view(), name='index'),
+    path('movie/create', MovieCreateView.as_view(), name='movie_create'),
+
 ]
 
