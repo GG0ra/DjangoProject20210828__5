@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+    <!-- TO jest komentarz -->
+    {% comment "Dodatkowa notka" %}
+        Lorem ipsum test 123
+    {% endcomment %}
+
+    {% for o in list %}
+        <div class="{% cycle 'row' 'row2' %}">
+            {{ o }}
+        </div>
+    {% empty %}
+        <div>Brak elementów w liście</div>
+    {% endfor %}
+
+    <div>
+        {% if our_get != '' %}
+            Nasza wartość: {{ our_get }}
+        {% else %}
+            <code>Our_get</code> jest pusty!
+        {% endif %}
+    </div>
+    <div>
+        Nasza wartość wynosi: {{ our_get|default:"NIC" }}
+    </div>
+
+    Dzisiaj jest: {{ nasza_data | date:'d.m.Y' }}
+</body>
+</html>

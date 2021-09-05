@@ -1,0 +1,12 @@
+1.  Zaawansowane szablony:
+    1.1. {% for xx in list %} {% endfor %}
+    1.2. {% if x == 1 %} prawda {% else %} fałsz {endif}
+    1.3. {{ obiekt.wartość }}
+    1.4. {{data | date:'d.m.Y' }}
+2.  Hasła są przechowywane w postaci zahasowanej
+    2.1. Do hasła dodajemy sól
+    2.2. Nie jesteśmy w stanie podejrzeć hasła użytkownika
+3. Jeżeli użytkownik nie jest zalogowany w obiekcie
+    request zostaje utworzony sztuczny, anonimowy user
+4. Dekorator @login_required wymusza zalogowanie
+    użytkownika zanim zobaczy wynik działania metody
