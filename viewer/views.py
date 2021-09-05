@@ -9,11 +9,14 @@ from viewer.forms import MovieForm
 from logging import getLogger
 LOGGER = getLogger()
 
-from django.contrib.auth.decorators import login_required # <=NOWE
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 
-@login_required # <=NOWE
+class SubmittableLoginView(LoginView):
+    template_name = 'form.html'
+
+@login_required
 def generate_demo(request):
     our_get = request.GET.get('name', '')
     return render(
@@ -31,7 +34,7 @@ class MoviesView(LoginRequiredMixin, ListView):
 
 
 class MovieCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'form.html'
+    template_name = 'formAddEditMovie.html'
     form_class = MovieForm
     # adres pobrany z URLs na który zostaniemy przekierowani
     # gdy walidacja się powiedzie (movie_create pochodzi z name!)
@@ -45,7 +48,7 @@ class MovieCreateView(LoginRequiredMixin, CreateView):
         return super().form_invalid(form)
 
 class MovieUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = 'form.html'
+    template_name = 'formAddEditMovie.html'
     form_class = MovieForm
     # adres pobrany z URLs na który zostaniemy przekierowani
     # gdy aktualizacja się powiedzie (index pochodzi z name!)
