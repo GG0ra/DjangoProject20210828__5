@@ -8,10 +8,9 @@
     <h1>Witaj w HollyMovies!</h1>
     {% for movie in object_list %}
         <li>
-            {{ movie.title }} ({{ movie.released.year }}) - {{ movie.genre.name }}
-            (Edytuj)
+            <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a> ({{ movie.released.year }}) - {{ movie.genre.name }}
+            <a href="{% url 'movie_update' movie.id %}">(Edytuj)></a>
             <a href="{% url 'movie_delete' movie.id %}">(Usuń)</a>
         </li>
     {% endfor %}
 {% endblock %}
-

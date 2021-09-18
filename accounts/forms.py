@@ -2,12 +2,11 @@ from django.contrib.auth.forms import (
     AuthenticationForm, PasswordChangeForm, UserCreationForm
 )
 
-from django.forms import CharField, Form, Textarea  # <== NOWE
+from django.forms import CharField, Form, Textarea #<== NOWE
 
 from accounts.models import Profile
 
 from django.db.transaction import atomic
-
 
 class SignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -15,7 +14,7 @@ class SignUpForm(UserCreationForm):
 
     biography = CharField(
         label='Opowiedz o sobie', widget=Textarea, min_length=30
-    )  # <===NOWE
+    ) #<===NOWE
 
     @atomic
     def save(self, commit=True):
@@ -26,3 +25,4 @@ class SignUpForm(UserCreationForm):
         if commit:
             profile.save()
         return result
+
